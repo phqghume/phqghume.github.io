@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script>
+      function calc() {
+        var d = Number(document.getElementById("d").value);
+        var s = Number(document.getElementById("s").value);
+        var ans = 0;
+        // alert(a); alert(b);
+        if (s >= 10000000) ans = d + 2;
+        else if (s >= 9800000) ans = d + 1 + (s - 9800000) / 200000;
+        else ans = d + (s - 9500000) / 300000;
+        if (ans < 0) ans = 0;
+        document.getElementById("ptt").innerHTML = ans;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span12">
+          <h3 class="text-center">
+            Arcaea单曲ptt计算器
+          </h3>
+          <div class="row-fluid">
+            <div class="span4">
+            </div>
+            <div class="span4">
+                <legend>曲目定数</legend><input type="text" id="d"/> <legend>最终得分</legend><input type="text" id="s"/><hr /> <button class="btn btn-success" onclick="calc()">计算</button>
+              <p></p>
+              <div class="alert alert-success">
+                <strong>您的单曲ptt为：</strong> <span id="ptt"></span>
+              </div>
+            </div>
+            <div class="span4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
