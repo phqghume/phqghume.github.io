@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>阿卡伊工具</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -11,13 +12,16 @@
       function calc() {
         var d = Number(document.getElementById("d").value);
         var s = Number(document.getElementById("s").value);
-        var ans = 0;
+        var p = Number(document.getElementById("p").value);
+        var ptt = 0, step = 0;
         // alert(a); alert(b);
-        if (s >= 10000000) ans = d + 2;
-        else if (s >= 9800000) ans = d + 1 + (s - 9800000) / 200000;
-        else ans = d + (s - 9500000) / 300000;
-        if (ans < 0) ans = 0;
-        document.getElementById("ptt").innerHTML = ans;
+        if (s >= 10000000) ptt = d + 2;
+        else if (s >= 9800000) ptt = d + 1 + (s - 9800000) / 200000;
+        else ptt = d + (s - 9500000) / 300000;
+        if (ptt < 0) ptt = 0;
+        document.getElementById("ptt").innerHTML = ptt;
+        step = (2.5 + 2.45 * Math.sqrt(ptt)) * (p / 50);
+        document.getElementById("step").innerHTML = step;
       }
     </script>
   </head>
@@ -26,16 +30,24 @@
       <div class="row-fluid">
         <div class="span12">
           <h3 class="text-center">
-            Arcaea单曲ptt计算器
+            Arcaea爬梯计算器
           </h3>
+          <div class="alert alert-warning">
+            <strong>注意：</strong> 由于存在精度问题，计算结果可能与实际结果有一定差距！
+          </div>
           <div class="row-fluid">
             <div class="span4">
             </div>
             <div class="span4">
-                <legend>曲目定数</legend><input type="text" id="d"/> <legend>最终得分</legend><input type="text" id="s"/><hr /> <button class="btn btn-success" onclick="calc()">计算</button>
+                <legend>曲目定数</legend><input type="text" id="d"/>
+                <legend>最终得分</legend><input type="text" id="s"/>
+                <legend>角色step</legend><input type="text" id="p"/>
+                <hr /> 
+                <button class="btn btn-success" onclick="calc()">计算</button>
               <p></p>
               <div class="alert alert-success">
-                <strong>您的单曲ptt为：</strong> <span id="ptt"></span>
+                <strong>您的单曲ptt为：</strong> <span id="ptt"></span><hr/>
+                <strong>爬梯步数（请自行舍入）：</strong> <span id="step"></span>
               </div>
             </div>
             <div class="span4">
