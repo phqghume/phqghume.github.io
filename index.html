@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>阿卡伊工具</title>
+    <title>引诱工具箱</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
@@ -9,19 +9,26 @@
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-      function calc() {
-        var d = Number(document.getElementById("d").value);
-        var s = Number(document.getElementById("s").value);
-        var p = Number(document.getElementById("p").value);
+      function arc_calc() {
+        var d = Number(document.getElementById("arc_d").value);
+        var s = Number(document.getElementById("arc_s").value);
+        var p = Number(document.getElementById("arc_p").value);
         var ptt = 0, step = 0;
         // alert(a); alert(b);
         if (s >= 10000000) ptt = d + 2;
         else if (s >= 9800000) ptt = d + 1 + (s - 9800000) / 200000;
         else ptt = d + (s - 9500000) / 300000;
         if (ptt < 0) ptt = 0;
-        document.getElementById("ptt").innerHTML = ptt;
+        document.getElementById("arc_ptt").innerHTML = ptt;
         step = (2.5 + 2.45 * Math.sqrt(ptt)) * (p / 50);
-        document.getElementById("step").innerHTML = step;
+        document.getElementById("arc_step").innerHTML = step;
+      }
+      function phi_calc() {
+        var d = Number(document.getElementById("phi_d").value);
+        var s = Number(document.getElementById("phi_acc").value);
+        var rks = 0, p = (s - 55) / 45.;
+        if (s >= 70) rks = p * p * d;
+        document.getElementById("phi_rks").innerHTML = rks;
       }
     </script>
   </head>
@@ -39,15 +46,37 @@
             <div class="span4">
             </div>
             <div class="span4">
-                <legend>曲目定数</legend><input type="text" id="d"/>
-                <legend>最终得分</legend><input type="text" id="s"/>
-                <legend>角色step</legend><input type="text" id="p"/>
+                <legend>曲目定数</legend><input type="text" id="arc_d"/>
+                <legend>最终得分</legend><input type="text" id="arc_s"/>
+                <legend>角色step</legend><input type="text" id="arc_p"/>
                 <hr /> 
-                <button class="btn btn-success" onclick="calc()">计算</button>
+                <button class="btn btn-success" onclick="arc_calc()">计算</button>
               <p></p>
               <div class="alert alert-success">
-                <strong>您的单曲ptt为：</strong> <span id="ptt"></span><hr/>
-                <strong>爬梯步数（请自行舍入）：</strong> <span id="step"></span>
+                <strong>您的单曲ptt为：</strong> <span id="arc_ptt"></span><hr/>
+                <strong>爬梯步数（请自行舍入）：</strong> <span id="arc_step"></span>
+              </div>
+            </div>
+            <div class="span4">
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="span12">
+          <h3 class="text-center">
+            Phigros单曲rks计算
+          </h3>
+          <div class="row-fluid">
+            <div class="span4">
+            </div>
+            <div class="span4">
+                <legend>曲目定数</legend><input type="text" id="phi_d"/>
+                <legend>曲目ACC（无需输入百分号）</legend><input type="text" id="phi_acc"/>
+                <hr /> 
+                <button class="btn btn-success" onclick="phi_calc()">计算</button>
+              <p></p>
+              <div class="alert alert-success">
+                <strong>您的单曲rks为：</strong> <span id="phi_rks"></span>
               </div>
             </div>
             <div class="span4">
