@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/vue@next"></script>
+  <link rel="stylesheet" href="long.css" />
+  <title>随机龙图</title>
+</head>
+<body>
+  <div id="app">
+    <div class="img">
+      <img :src="image" alt="加载错误，nmsl。"/>
+    </div>
+    <button @click="changeImage()">随机一张</button>
+  </div>
+  <script src="long.js"></script>
+</body>
+</html>
